@@ -11,4 +11,9 @@ public class LocationService
     {
         return _locationRepository.GetLocations();
     }
+    public Location? GetLocationById(Guid id)
+    {
+        return _locationRepository.GetLocationById(id);
+        
+    }
 }

@@ -8,6 +8,11 @@ public class LocationRepository
     {
         return MockLocationData.GetMockLocationData();
     }
+    public Location? GetLocationById(Guid id)
+    {
+        return MockLocationData.GetMockLocationData().FirstOrDefault(l => l.Id == id);
+        
+    }
 }
 
 public static class MockLocationData

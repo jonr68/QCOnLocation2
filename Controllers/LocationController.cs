@@ -20,4 +20,17 @@ public class LocationController : ControllerBase
     {
         return _locationService.GetLocations();
     }
+
+    [HttpGet]
+    [Route("{id}")]
+    public ActionResult<Location> GetLocationById(Guid id)
+    {
+        var location = _locationService.GetLocationById(id);
+        if (location == null)
+        {
+            return NotFound();
+        }
+        return location;
+    }
 }
+
