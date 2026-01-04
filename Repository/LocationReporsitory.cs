@@ -8,10 +8,10 @@ public class LocationRepository
     {
         return MockLocationData.GetMockLocationData();
     }
-    public Location? GetLocationById(Guid id)
+
+    public Location? GetLocationById(int id)
     {
         return MockLocationData.GetMockLocationData().FirstOrDefault(l => l.Id == id);
-        
     }
 }
 
@@ -21,17 +21,17 @@ public static class MockLocationData
     [
         new()
         {
-            Id = Guid.NewGuid(), Name = "Location A", Description = "Description A", LatLong = "34.0522 N-118.2437",
+            Id = 1, Name = "Location A", Description = "Description A", LatLong = "34.0522 N-118.2437",
             Tags = ["tag1", "tag2"]
         },
         new()
         {
-            Id = Guid.NewGuid(), Name = "Location B", Description = "Description B", LatLong = "40.7128 N-74.0060",
+            Id = 2, Name = "Location B", Description = "Description B", LatLong = "40.7128 N-74.0060",
             Tags = ["tag3", "tag4"]
         },
         new()
         {
-            Id = Guid.NewGuid() ,Name = "Location C", Description = "Description C", LatLong = "37.7749 N-122.4194",
+            Id = 3, Name = "Location C", Description = "Description C", LatLong = "37.7749 N-122.4194",
             Tags = ["tag5", "tag6"]
         }
     ];

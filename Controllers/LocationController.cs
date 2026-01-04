@@ -12,7 +12,7 @@ public class LocationController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public ActionResult<Location> GetLocationById(Guid id)
+    public ActionResult<Location> GetLocationById(int id)
     {
         var location = _locationService.GetLocationById(id);
         if (location == null)
