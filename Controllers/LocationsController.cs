@@ -9,7 +9,7 @@ namespace QcOnLocation.Controllers;
  */
 [ApiController]
 [Route("locations")]
-public class LocationController : ControllerBase
+public class LocationsController : ControllerBase
 {
     private readonly LocationService _locationService = new();
 
