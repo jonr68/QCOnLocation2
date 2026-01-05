@@ -59,4 +59,18 @@ public static class MockLocationData
         Data.Add(location);
         return location;
     }
+    
+    public static Location DeleteLocation(int id)
+    {
+        var location = Data.FirstOrDefault(l => l.Id == id);
+        if (location != null)
+        {
+            Data.Remove(location);
+        }
+        else
+        {
+            throw new ArgumentNullException(nameof(location)); 
+        }
+        return location;
+    }
 }

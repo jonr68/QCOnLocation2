@@ -16,3 +16,7 @@ Content-Type: application/json
   "Tags": ["tag7", "tag8"]
 }
 
+###
+DELETE {{QcOnLocation_HostAddress}}/location/4
+Accept: application/json  
+
