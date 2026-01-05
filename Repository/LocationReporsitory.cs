@@ -50,9 +50,10 @@ public static class MockLocationData
     {
         if (location is null) throw new ArgumentNullException(nameof(location));
 
-        if (location.Id == 0)
+        if (!location.Id.HasValue || location.Id == 0)
         {
-            location.Id = Data.Any() ? Data.Max(l => l.Id) + 1 : 1;
+            var nextId = Data.Any() ? Data.Max(l => l.Id ?? 0) + 1 : 1;
+            location.Id = nextId;
         }
 
         Data.Add(location);

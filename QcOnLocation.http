@@ -3,3 +3,16 @@
 GET {{QcOnLocation_HostAddress}}/locations
 Accept: application/json
 
+###
+
+POST {{QcOnLocation_HostAddress}}/location
+Content-Type: application/json 
+
+{
+  
+  "Name": "Location 1701-f",
+  "Description": "Description f",
+  "LatLong": "37.7749 N-122.4194",
+  "Tags": ["tag7", "tag8"]
+}
+
