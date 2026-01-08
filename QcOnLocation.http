@@ -17,6 +17,7 @@ Content-Type: application/json
 }
 
 ###
+
 DELETE {{QcOnLocation_HostAddress}}/location/4
 Accept: application/json  
 

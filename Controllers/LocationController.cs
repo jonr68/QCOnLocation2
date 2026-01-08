@@ -30,13 +30,16 @@ public class LocationController : ControllerBase
         var createdLocation = _locationService.CreateLocation(location);
         return CreatedAtAction(nameof(GetLocationById), new { id = createdLocation.Id }, createdLocation);
     }
-    
+
     [HttpDelete]
     [Route("{id}")]
-    
     public ActionResult<Location> DeleteLocation(int id)
     {
         var deletedLocation = _locationService.DeleteLocation(id);
+        if (deletedLocation == null)
+        {
+            return NotFound();
+        }
         return deletedLocation;
     }
 }
