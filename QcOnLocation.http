@@ -21,3 +21,16 @@ Content-Type: application/json
 DELETE {{QcOnLocation_HostAddress}}/location/4
 Accept: application/json  
 
+
+###
+
+PUT {{QcOnLocation_HostAddress}}/location
+Content-Type: application/json
+
+{
+  "Id": "4",
+  "Name": "Updated Name",
+  "Description": "Updated Description",
+  "LatLong": "Updated 37.7749 N-122.4194",
+  "Tags": ["Updated tag7", "Updated tag8"]
+}

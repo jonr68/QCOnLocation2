@@ -40,6 +40,20 @@ public class LocationController : ControllerBase
         {
             return NotFound();
         }
+
         return deletedLocation;
+    }
+
+    [HttpPut]
+    [Route("")]
+    public ActionResult<Location> UpdateLocation(Location location)
+    {
+        var updateLocation = _locationService.UpdateLocation(location);
+        if (updateLocation == null)
+        {
+            return NotFound();
+        }
+
+        return updateLocation;
     }
 }

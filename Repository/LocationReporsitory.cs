@@ -60,7 +60,7 @@ public static class MockLocationData
         Console.WriteLine("log" + location);
         return location;
     }
-    
+
     public static Location? DeleteLocation(int id)
     {
         var location = Data.FirstOrDefault(l => l.Id == id);
@@ -68,7 +68,23 @@ public static class MockLocationData
         {
             return null;
         }
+
         Data.Remove(location);
         return location;
+    }
+
+    public static Location? UpdateLocation(Location location)
+    {
+        var existingLocation = Data.FirstOrDefault(l => l.Id == location.Id);
+        if (existingLocation == null)
+        {
+            return null;
+        }
+
+        existingLocation.Name = location.Name;
+        existingLocation.Description = location.Description;
+        existingLocation.LatLong = location.LatLong;
+        existingLocation.Tags = location.Tags;
+        return existingLocation;
     }
 }
