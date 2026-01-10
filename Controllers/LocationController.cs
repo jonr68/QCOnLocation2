@@ -4,20 +4,56 @@ using QcOnLocation.Services;
 
 namespace QcOnLocation.Controllers;
 
-/**
- * The Controller is responsible for endpoint routing.
- */
 [ApiController]
-[Route("locations")]
+[Route("location")]
 public class LocationController : ControllerBase
 {
     private readonly LocationService _locationService = new();
 
-
     [HttpGet]
-    [Route("")]
-    public IEnumerable<Location> Get()
+    [Route("{id}")]
+    public ActionResult<Location> GetLocationById(int id)
     {
-        return _locationService.GetLocations();
+        var location = _locationService.GetLocationById(id);
+        if (location == null)
+        {
+            return NotFound();
+        }
+
+        return location;
+    }
+
+    [HttpPost]
+    [Route("")]
+    public ActionResult<Location> CreateLocation([FromBody] Location location)
+    {
+        var createdLocation = _locationService.CreateLocation(location);
+        return CreatedAtAction(nameof(GetLocationById), new { id = createdLocation.Id }, createdLocation);
+    }
+
+    [HttpDelete]
+    [Route("{id}")]
+    public ActionResult<Location> DeleteLocation(int id)
+    {
+        var deletedLocation = _locationService.DeleteLocation(id);
+        if (deletedLocation == null)
+        {
+            return NotFound();
+        }
+
+        return deletedLocation;
+    }
+
+    [HttpPut]
+    [Route("")]
+    public ActionResult<Location> UpdateLocation(Location location)
+    {
+        var updateLocation = _locationService.UpdateLocation(location);
+        if (updateLocation == null)
+        {
+            return NotFound();
+        }
+
+        return updateLocation;
     }
 }
