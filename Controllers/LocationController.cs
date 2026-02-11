@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using QcOnLocation.Data;
 using QcOnLocation.Models;
 using QcOnLocation.Services;
 
@@ -8,52 +10,50 @@ namespace QcOnLocation.Controllers;
 [Route("location")]
 public class LocationController : ControllerBase
 {
-    private readonly LocationService _locationService = new();
+    private readonly LocationContext _context;
+
+    public LocationController(LocationContext context)
+    {
+        _context = context;
+    }
 
     [HttpGet]
-    [Route("{id}")]
-    public ActionResult<Location> GetLocationById(int id)
+    public async Task<ActionResult<IEnumerable<Location>>> GetAll()
     {
-        var location = _locationService.GetLocationById(id);
-        if (location == null)
-        {
-            return NotFound();
-        }
+        return await _context.Locations.ToListAsync();
+    }
 
-        return location;
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Location>> Get(int id)
+    {
+        var post = await _context.Locations.FindAsync(id);
+        return post == null ? NotFound() : post;
     }
 
     [HttpPost]
-    [Route("")]
-    public ActionResult<Location> CreateLocation([FromBody] Location location)
+    public async Task<ActionResult<Location>> Create(Location location)
     {
-        var createdLocation = _locationService.CreateLocation(location);
-        return CreatedAtAction(nameof(GetLocationById), new { id = createdLocation.Id }, createdLocation);
+        _context.Locations.Add(location);
+        await _context.SaveChangesAsync();
+        return CreatedAtAction(nameof(Get), new { id = location.Id }, location);
     }
 
-    [HttpDelete]
-    [Route("{id}")]
-    public ActionResult<Location> DeleteLocation(int id)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(int id, Location location)
     {
-        var deletedLocation = _locationService.DeleteLocation(id);
-        if (deletedLocation == null)
-        {
-            return NotFound();
-        }
-
-        return deletedLocation;
+        if (id != location.Id) return BadRequest();
+        _context.Entry(location).State = EntityState.Modified;
+        await _context.SaveChangesAsync();
+        return NoContent();
     }
 
-    [HttpPut]
-    [Route("")]
-    public ActionResult<Location> UpdateLocation(Location location)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
     {
-        var updateLocation = _locationService.UpdateLocation(location);
-        if (updateLocation == null)
-        {
-            return NotFound();
-        }
-
-        return updateLocation;
+        var post = await _context.Locations.FindAsync(id);
+        if (post == null) return NotFound();
+        _context.Locations.Remove(post);
+        await _context.SaveChangesAsync();
+        return NoContent();
     }
 }
