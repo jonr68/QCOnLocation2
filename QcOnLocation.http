@@ -10,27 +10,27 @@ Content-Type: application/json
 
 {
   
-  "Name": "BD Check",
-  "Description": "Please god work",
+  "Name": "My house",
+  "Description": "It's a very fine house",
   "LatLong": "37.7749 N-122.4194",
   "Tags": ["tag7", "tag8"]
 }
 
 ###
 
-DELETE {{QcOnLocation_HostAddress}}/location/2
+DELETE {{QcOnLocation_HostAddress}}/location/5
 Accept: application/json  
 
 
 ###
 
-PUT {{QcOnLocation_HostAddress}}/location/1
+PUT {{QcOnLocation_HostAddress}}/location/5
 Content-Type: application/json
 
 {
-  "Id": "1",
-  "name":"Location 1701-f",
-  "description":"Description Updated with put",
+  "Id": "5",
+  "name":"Your house",
+  "description":"Runs house",
   "latLong":"37.7749 N-122.4194",
   "tags":["tag7","tag8"]
 }
