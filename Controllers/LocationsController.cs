@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using QcOnLocation.Data;
 using QcOnLocation.Models;
 using QcOnLocation.Services;
 
@@ -11,13 +13,16 @@ namespace QcOnLocation.Controllers;
 [Route("locations")]
 public class LocationsController : ControllerBase
 {
-    private readonly LocationService _locationService = new();
+    private readonly LocationContext _context;
 
-
-    [HttpGet]
-    [Route("")]
-    public IEnumerable<Location> Get()
+    public LocationsController(LocationContext context)
     {
-        return _locationService.GetLocations();
+        _context = context;
+    }
+    
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Location>>> GetAll()
+    {
+        return await _context.Locations.ToListAsync();
     }
 }
