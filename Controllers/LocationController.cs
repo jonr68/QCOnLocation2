@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QcOnLocation.Data;
 using QcOnLocation.Models;
-// using QcOnLocation.Services;
+
 
 namespace QcOnLocation.Controllers;
 
@@ -17,11 +17,6 @@ public class LocationController : ControllerBase
         _context = context;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<Location>>> GetAll()
-    {
-        return await _context.Locations.ToListAsync();
-    }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Location>> Get(int id)
