@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using QcOnLocation.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<LocationContext>(options =>
+    options.UseSqlite("Data Source=location.db"));
 
 
 var app = builder.Build();

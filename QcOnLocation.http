@@ -10,27 +10,27 @@ Content-Type: application/json
 
 {
   
-  "Name": "Location 1701-f",
-  "Description": "Description f",
+  "Name": "Beer Gardens",
+  "Description": "Grab a pint and relax",
   "LatLong": "37.7749 N-122.4194",
   "Tags": ["tag7", "tag8"]
 }
 
 ###
 
-DELETE {{QcOnLocation_HostAddress}}/location/4
+DELETE {{QcOnLocation_HostAddress}}/location/6
 Accept: application/json  
 
 
 ###
 
-PUT {{QcOnLocation_HostAddress}}/location
+PUT {{QcOnLocation_HostAddress}}/location/6
 Content-Type: application/json
 
 {
-  "Id": "4",
-  "Name": "Updated Name",
-  "Description": "Updated Description",
-  "LatLong": "Updated 37.7749 N-122.4194",
-  "Tags": ["Updated tag7", "Updated tag8"]
+  "Id": "6",
+  "name":"Your house",
+  "description":"Runs house",
+  "latLong":"37.7749 N-122.4194",
+  "tags":["tag7","tag8"]
 }
