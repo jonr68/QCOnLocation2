@@ -10,27 +10,27 @@ Content-Type: application/json
 
 {
   
-  "Name": "Beer Gardens",
-  "Description": "Grab a pint and relax",
+  "Name": "Wrigley Field",
+  "Description": "Go Cubs Go",
   "LatLong": "37.7749 N-122.4194",
   "Tags": ["tag7", "tag8"]
 }
 
 ###
 
-DELETE {{QcOnLocation_HostAddress}}/location/6
+DELETE {{QcOnLocation_HostAddress}}/location/7
 Accept: application/json  
 
 
 ###
 
-PUT {{QcOnLocation_HostAddress}}/location/6
+PUT {{QcOnLocation_HostAddress}}/location/7
 Content-Type: application/json
 
 {
-  "Id": "6",
-  "name":"Your house",
-  "description":"Runs house",
-  "latLong":"37.7749 N-122.4194",
-  "tags":["tag7","tag8"]
+  "Id": "7",
+  "Name": "Wrigley Field",
+  "Description": "Go Cubs Go what do you say",
+  "LatLong": "37.7749 N-122.4194",
+  "Tags": ["tag7", "tag8"]
 }
