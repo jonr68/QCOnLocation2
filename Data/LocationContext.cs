@@ -7,13 +7,14 @@ namespace QcOnLocation.Data
 {
     public class LocationContext : DbContext
     {
-        public LocationContext(DbContextOptions<LocationContext> options) : base(options) { }
+        public LocationContext(DbContextOptions<LocationContext> options) : base(options)
+        {
+        }
 
         public DbSet<Location> Locations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Convert string[] to JSON string for storage in SQLite TEXT column
             var options = new JsonSerializerOptions();
 
             var converter = new ValueConverter<string[]?, string?>(

@@ -49,7 +49,6 @@ public class LocationController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    // Accept form-data for fields and files. To add images on update, include files named 'images'.
     public async Task<IActionResult> Update(int id, [FromForm] Location location, [FromForm] IFormFile[]? images)
     {
         if (id != location.Id) return BadRequest();
@@ -57,13 +56,11 @@ public class LocationController : ControllerBase
         var existing = await _context.Locations.FindAsync(id);
         if (existing == null) return NotFound();
 
-        // Update scalar properties
         existing.Name = location.Name;
         existing.Description = location.Description;
         existing.LatLong = location.LatLong;
         existing.Tags = location.Tags;
 
-        // If new images were uploaded, save and append them to existing images
         if (images != null && images.Length > 0)
         {
             var saved = await SaveImagesAsync(images);
@@ -96,10 +93,8 @@ public class LocationController : ControllerBase
         {
             if (file == null || file.Length == 0) continue;
 
-            // Basic content-type check - allow only images
             if (!file.ContentType.StartsWith("image/", StringComparison.OrdinalIgnoreCase))
             {
-                // skip non-images (alternatively, you could reject the request)
                 continue;
             }
 
