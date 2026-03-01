@@ -35,7 +35,6 @@ public class LocationController : ControllerBase
     }
 
     [HttpPost]
-    // Accept form-data for fields and files. Client should POST multipart/form-data with text fields and file inputs named 'images'.
     public async Task<ActionResult<Location>> Create([FromForm] Location location, [FromForm] IFormFile[]? images)
     {
         if (images != null && images.Length > 0)
