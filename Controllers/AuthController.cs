@@ -13,7 +13,7 @@ public class AuthController : Controller
         var props = new AuthenticationProperties { RedirectUri = returnUrl };
         return Challenge(props, "Google");
     }
-    //push
+    //pushs
 }
 
 
