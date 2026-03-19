@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using QcOnLocation.Data;
 using QcOnLocation.Models;
@@ -11,6 +12,7 @@ namespace QcOnLocation.Controllers;
  */
 [ApiController]
 [Route("locations")]
+[Authorize]
 public class LocationsController : ControllerBase
 {
     private readonly LocationContext _context;
@@ -21,6 +23,7 @@ public class LocationsController : ControllerBase
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<Location>>> GetAll()
     {
         return await _context.Locations.ToListAsync();
