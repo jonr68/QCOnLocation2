@@ -9,12 +9,14 @@ using QcOnLocation.Data;
 using QcOnLocation.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace QcOnLocation.Controllers;
 
 [ApiController]
 [Route("location")]
+[Authorize]
 public class LocationController : ControllerBase
 {
     private readonly LocationContext _context;
@@ -28,6 +30,7 @@ public class LocationController : ControllerBase
 
 
     [HttpGet("{id}")]
+    [AllowAnonymous]
     public async Task<ActionResult<Location>> Get(int id)
     {
         var post = await _context.Locations.FindAsync(id);
