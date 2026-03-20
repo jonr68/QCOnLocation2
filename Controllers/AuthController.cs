@@ -61,6 +61,16 @@ public class AuthController : Controller
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         return NoContent();
     }
+
+    // Status: return whether the current request is authenticated (useful for test pages)
+    [HttpGet("status")]
+    [AllowAnonymous]
+    public IActionResult Status()
+    {
+        var isAuthenticated = User?.Identity?.IsAuthenticated ?? false;
+        var name = isAuthenticated ? User?.Identity?.Name : null;
+        return Ok(new { authenticated = isAuthenticated, name });
+    }
 }
 
 
